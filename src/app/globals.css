@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  @import url("https://fueler.io/css/fonts/metropolis.css");
+
+  body {
+    font-family: 'Metropolis', sans-serif;
+  }
+
+  .left-div, .right-div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    height: 20%;
+    border-radius: 18.125rem;
+    background: linear-gradient(166deg, #F3911E 13%, #EB24BF 122.52%);
+    filter: blur(114px);
+    z-index: -10;
+  }
+  
+  .left-div {
+    left: 0;
+    transform: translateY(150%);
+  }
+  
+  .right-div {
+    right: 0;
+    transform: translateY(240%);
+  }
+  
