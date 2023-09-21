@@ -2,7 +2,7 @@ import NavBar from './components/NavBar'
 import './globals.css'
 
 export const metadata = {
-  title: 'Ignnite AI',
+  title: 'Ignite AI',
   description: 'Give us a topic, and we will create the best content for your different social media platform',
 }
 

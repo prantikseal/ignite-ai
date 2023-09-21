@@ -7,7 +7,7 @@ const NavBar = () => {
     <nav className="bg-blur bg-opacity-30 backdrop-blur-lg backdrop-filter fixed top-0 w-full z-50">
       <div className="container mx-auto py-4 px-4 md:px-28 flex justify-between items-center">
         <div className="img-logo">
-          <Link href="/">
+          <Link href="/" aria-label="logo">
             <Image src="/logo.png" alt="" width={126} height={79}/>
           </Link>
         </div>  
