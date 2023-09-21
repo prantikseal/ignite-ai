@@ -19,7 +19,13 @@ export async function POST(request) {
 
     // Create a chat completion using OpenAI
     const completion = await openai.chat.completions.create({
-      messages: [{ role: 'user', content: prompt }], // Use the provided prompt
+      messages: [
+        {
+          role: "system",
+          content: "You are a social media assistant that helps to create captions or content or script for people.",
+        },
+        { role: 'user', content: prompt }]
+        , // Use the provided prompt
       model: 'gpt-3.5-turbo', // Use the desired OpenAI model
     });
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import ReactMarkdown from 'react-markdown'
 
 const InputSection = () => {
   const [platform, setPlatform] = useState("Others");
@@ -76,7 +77,7 @@ const InputSection = () => {
       .post(apiEndpoint, requestData)
       .then((response) => {
         // Handle the response data
-        // console.log("Response:", response.data);
+        console.log("Response:", response.data);
         setResponseText(`${response.data.completionResponse}`)
       })
       .catch((error) => {
@@ -152,9 +153,11 @@ const InputSection = () => {
           {/* Input Box */}
           {isSubmit ? (
             <div className="text-white mb-4 px-4">
+              <ReactMarkdown>
               {
                 responseText
               }
+              </ReactMarkdown>
             </div>
           ) : (
             <>
@@ -192,6 +195,7 @@ const InputSection = () => {
             className="px-10 py-3 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 text-white font-extrabold mt-12 w-100 text-end"
             onClick={() => {
               setIsSubmit(false);
+              setResponseText("Generating...")
             }}
           >
             Back
