@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
 const VideoInputSection = () => {
   const [selected, setSelected] = useState(null);
@@ -32,7 +33,7 @@ const VideoInputSection = () => {
   };
 
   const generateText = () => {
-    if (!selected || !topicValue || !timeValue){
+    if (!selected || !topicValue){
       setErrorMessage("Please select a category, time and enter the topic");
 
     } else{
@@ -49,9 +50,21 @@ const VideoInputSection = () => {
 
   const contentGenerator = () => {
     const apiEndpoint = "/api/chat";
-    const requestData = {
-      prompt: `I need a video script that is ${timeValue} mins long on the topic of "${topicValue}". The plot must be creative and original. Please don't use too many professional or complex words.`,
-    };
+    let requestData = {}
+    if (selected === "script"){
+      requestData = {
+        prompt: `I need a video script that is ${timeValue} mins long on the topic of "${topicValue}". The plot must be creative and original. Please don't use too many professional or complex words.`,
+      };
+    } else if(selected === "title"){
+      requestData = {
+        prompt: `I need 10 video title ideas of video that is ${timeValue} mins long on the topic of "${topicValue}". The plot must be creative and original. Please don't use too many professional or complex words.`,
+      };
+    } else if(selected === "description"){
+      requestData = {
+        prompt: `I need a video description that is ${timeValue} mins long on the topic of "${topicValue}". The plot must be creative and original. Please don't use too many professional or complex words.`,
+      };
+
+    }
 
     console.log(requestData)
 
@@ -134,7 +147,7 @@ const VideoInputSection = () => {
     <input
       type="text"
       className="block w-full p-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:border-blue-500 pr-10"
-      placeholder="Ex 7:30"
+      placeholder="Ex 7:30 (length of vid in mins)"
       value={timeValue}
       onChange={handleTimeInputChange}
     />
@@ -213,7 +226,9 @@ const VideoInputSection = () => {
                   ""
                 )
               }
-                  {generatedText}
+              <ReactMarkdown>
+              {generatedText}
+              </ReactMarkdown>
                 </div>
               </div>
             </div>

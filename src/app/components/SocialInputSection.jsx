@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
 const SocialInputSection = () => {
   const [selected, setSelected] = useState(null);
@@ -40,8 +41,20 @@ const SocialInputSection = () => {
 
   const contentGenerator = () => {
     const apiEndpoint = "/api/chat";
+    const platformToWordCount = {
+      twitter: 280,
+      linkedin: 1300,
+      instagram: 2200,
+      facebook: 800,
+      threads: 500,
+    };
+
+    const wordCount = platformToWordCount[selected] || 1000;
+
+    console.log(wordCount)
+    
     const requestData = {
-      prompt: `I need a ${selected} caption on ${topicValue} in the limits of words you know for social media . The plot must be creative and original.Please dont use too much professional or complex words.`,
+      prompt: `I need a ${selected} caption on ${topicValue} in ${wordCount} words . The plot must be creative and original.Please dont use too much professional or complex words.`,
     };
 
     console.log(requestData)
@@ -190,7 +203,9 @@ const SocialInputSection = () => {
                   ""
                 )
               }
-                  {generatedText}
+              <ReactMarkdown>
+              {generatedText}
+              </ReactMarkdown>
                 </div>
               </div>
             </div>
