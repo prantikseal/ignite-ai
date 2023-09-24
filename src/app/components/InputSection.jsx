@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ReactMarkdown from 'react-markdown'
+import Image from "next/image";
 
 const InputSection = () => {
   const [platform, setPlatform] = useState("Others");
@@ -87,7 +88,7 @@ const InputSection = () => {
   };
 
   return (
-    <div className="mx-4 md:mx-52 mb-5">
+    <div>
       <form className="input-section">
         <div className="py-4 bg-black border-0 rounded-2xl">
           <div className="flex items-start lg:items-center flex-col lg:flex-row gap-4 border-b border-white pb-4 mb-4 px-4">
@@ -153,6 +154,13 @@ const InputSection = () => {
           {/* Input Box */}
           {isSubmit ? (
             <div className="text-white mb-4 px-4">
+              {
+                responseText === "Generating ..." ? (
+                  <Image src="/1476.gif" alt="Loading" width={26} height={26} />
+                ) : (
+                  ""
+                )
+              }
               <ReactMarkdown>
               {
                 responseText

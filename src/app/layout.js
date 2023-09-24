@@ -15,9 +15,9 @@ export default function RootLayout({ children }) {
       <body >
         <NavBar />
         <div className=' mt-20 '></div>
-        <div className='left-div'></div>
+        {/* <div  className='left-div'></div> */}
         {children}
-        <div className='right-div'></div>
+        {/* <div  className='right-div'></div> */}
       </body>
     </html>
   )
